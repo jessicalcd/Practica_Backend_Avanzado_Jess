@@ -5,6 +5,9 @@ import * as homController from './controllers/homeController.js'
 
 const app = express()
 
+app.set('views', 'views')
+app.set('view engine', 'ejs')
+
 app.use(logger('dev'))
 
 app.get('/', homController.index)

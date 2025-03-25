@@ -1,3 +1,3 @@
 export function index (req, res, next) {
-    res.send('Hola')
+    res.render('home', { appName: 'Nodepop' })
 }
