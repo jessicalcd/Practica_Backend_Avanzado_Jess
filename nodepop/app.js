@@ -1,5 +1,5 @@
 import express from 'express'
-import createHttpError from 'http-errors'
+import createError from 'http-errors'
 
 const app = express()
 
@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 })
 
 //error handler
-app.use((req, res, next) => {
+app.use((err, req, res, next) => {
     res.status(err.status || 500)
     res.send('Ocurrio un error: ' + err.mesage)
 })
