@@ -1,6 +1,7 @@
 import express from 'express'
 import http from 'node:http'
 
+const port = process.env.PORT || 3000
 const app = express()
 
 app.get('/', (req, res, next) => {
@@ -10,7 +11,7 @@ app.get('/', (req, res, next) => {
 const server = http.createServer(app)
 
 server.on('listening', () => {
-    console.log('Serve stated on http://localhost:3000')
+    console.log(`Server started on http://localhost:${port}`)
 })
 
-server.listen(3000)
+server.listen(port)
