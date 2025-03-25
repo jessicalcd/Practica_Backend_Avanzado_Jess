@@ -1,14 +1,13 @@
 import express from 'express'
 import createError from 'http-errors'
 import logger from 'morgan'
+import * as homController from './controllers/homeController.js'
 
 const app = express()
 
-app.use(logger(dev))
+app.use(logger('dev'))
 
-app.get('/', (req, res, next) => {
-    res.send('Hola')
-})
+app.get('/', homController.index)
 
 //catch 404 and sebd error
 app.use((req, res, next) => {
