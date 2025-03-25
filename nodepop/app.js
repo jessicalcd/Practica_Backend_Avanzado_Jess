@@ -1,12 +1,10 @@
 import express from 'express'
 import createError from 'http-errors'
+import logger from 'morgan'
 
 const app = express()
 
-app.use((req, res, next) => {
-    console.log('Llega petición de tipo', req.method, 'a', req.url)
-    next()
-})
+app.use(logger(dev))
 
 app.get('/', (req, res, next) => {
     res.send('Hola')
