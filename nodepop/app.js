@@ -3,8 +3,9 @@ import express from 'express'
 import createError from 'http-errors'
 import logger from 'morgan'
 import connectMongoose from './lib/connectMongoose.js'
-import * as homController from './controllers/homeController.js'
+import * as homeController from './controllers/homeController.js'
 import * as loginController from './controllers/loginController.js'
+
 
 await connectMongoose()
 console.log('Conecte to MongoBD')
@@ -18,12 +19,14 @@ app.engine('html', (await import('ejs')).__express)
 app.locals.appName = 'Nodepop'
 
 app.use(logger('dev'))
+app.use(express.urlencoded({ extended: false })) 
 app.use(express.static(path.join(import.meta.dirname, 'public')))
 
 /* Aplication routes */
 
-app.get('/', homController.index)
+app.get('/', homeController.index)
 app.get('/login', loginController.index)
+app.post('/login', loginController.postLogin)
 
 
 //catch 404 and sebd error

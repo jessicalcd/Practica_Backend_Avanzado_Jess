@@ -18,4 +18,3 @@ export async function index (req, res, next) {
     }
 }
 
-

@@ -2,22 +2,19 @@
 
 <div class="container">
     <h1> Login </h1> 
-    <form>
+    <form method="POST">
         <div class="mb-3">
         <label for="exampleInputUsername1" class="form-label">Username</label>
-        <input type="text" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp">
+        <input type="text" value="<%= username %>" name="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp">
         <div id="usernameHelp" class="form-text">Choose a unique username for your account.</div>
         </div>
         <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        <p><%= error %></p>
     </form> 
 </div> 
  
- <%- include('footer.html') %>
+<%- include('footer.html') %>
