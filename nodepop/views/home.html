@@ -1,0 +1,19 @@
+<%- include('header.html') %>
+ 
+   <h2>Bucles</h2>
+   <% users.forEach(user => { %>
+     <p><%= user.name %> tiene <%= user.price %> años.</p>
+   <% }) %>
+ 
+   <h2>Condicionales</h2>
+ 
+   <p>El segundo actual es <%= segundoActual %></p>
+   <% if (esPar) { %>
+     <p>El segundo actual es par.</p>
+   <% } else { %>
+     <p>El segundo actual es impar.</p>
+   <% } %>
+ 
+   <%= codigo %>
+ 
+ <%- include('footer.html') %>

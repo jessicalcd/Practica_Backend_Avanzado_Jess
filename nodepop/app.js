@@ -1,16 +1,28 @@
+import path from 'node:path'
 import express from 'express'
 import createError from 'http-errors'
 import logger from 'morgan'
 import * as homController from './controllers/homeController.js'
+import connectMongoose from './lib/connectMongoose.js'
+
+await connectMongoose()
+console.log('Conecte to MongoBD')
 
 const app = express()
 
 app.set('views', 'views')
-app.set('view engine', 'ejs')
+app.set('view engine', 'html')
+app.engine('html', (await import('ejs')).__express)
+ 
+app.locals.appName = 'Nodepop'
 
 app.use(logger('dev'))
+app.use(express.static(path.join(import.meta.dirname, 'public')))
+
+/* Aplication routs */
 
 app.get('/', homController.index)
+
 
 //catch 404 and sebd error
 app.use((req, res, next) => {
@@ -20,7 +32,10 @@ app.use((req, res, next) => {
 //error handler
 app.use((err, req, res, next) => {
     res.status(err.status || 500)
-    res.send('Ocurrio un error: ' + err.mesage)
+    res.locals.message = err.message
+    res.locals.error = process.env.NODEPOP_ENV === 'development' ? err : {}
+
+    res.render('error')
 })
 
 export default app
