@@ -1,10 +1,9 @@
-export function index (req, res, next) {
-    res.locals.users = [
-        {name: 'Lampara LED ajustable', price: 40 },
-        {name: 'Zapatillas Nike Air Max', price: 100 },
-        {name: 'Bicicleta Trek Marlin 7', price: 650 },
-        {name: 'iPhone 13 Pro Max', price: 1100}
-    ]
+import Product from '../models/Product.js'
+
+
+export async function index (req, res, next) {
+    try {
+        res.locals.products = await Product.find()
 
     const now = new Date()
     res.locals.esPar = (now.getSeconds() % 2 ) === 0
@@ -13,5 +12,10 @@ export function index (req, res, next) {
     res.locals.codigo = '<script>alert("inyectado!!!")</script>'
 
     res.render('home')
+    
+    } catch (error) {
+        next(error)
+    }
 }
+
 
