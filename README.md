@@ -1,7 +1,5 @@
 # Nodepop
 
-# Nodepop
-
 Nodepop es un sitio web de ventas de productos de segunda mano. Los usuarios pueden agregar productos, visualizarlos y eliminarlos.
 
 ## Instalación
