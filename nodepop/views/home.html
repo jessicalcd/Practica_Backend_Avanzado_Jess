@@ -1,19 +1,28 @@
 <%- include('header.html') %>
  
-   <h2>Productos</h2>
-   <% products.forEach(product => { %>
-     <p><%= product.name %> tiene <%= product.price %> años.</p>
-   <% }) %>
- 
-   <h2>Condicionales</h2>
- 
-   <p>El segundo actual es <%= segundoActual %></p>
-   <% if (esPar) { %>
-     <p>El segundo actual es par.</p>
-   <% } else { %>
-     <p>El segundo actual es impar.</p>
-   <% } %>
- 
-   <%= codigo %>
+  <p>User ID: <%= session.userId %></p> 
+
+  <% if (!session.userId) { %>
+    <p><a href="login">Login</a> to access your products</p>
+  <% } else { %>
+    <h2>Productos</h2>
+    <% products.forEach(product => { %>
+      <h5><%= product.name %></h5>
+      <img src="<%= product.image %>" alt="<%= product.name %>" /> 
+      <p>Precio: <%= product.price %>€</p>
+    <% }) %>
+  <% } %>
+  
+
+  <h2>Condicionales</h2>
+
+  <p>El segundo actual es <%= segundoActual %></p>
+  <% if (esPar) { %>
+    <p>El segundo actual es par.</p>
+  <% } else { %>
+    <p>El segundo actual es impar.</p>
+  <% } %>
+
+  <%= codigo %>
  
  <%- include('footer.html') %>

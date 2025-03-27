@@ -20,10 +20,21 @@ export async function postLogin(req, res, next) {
             return
         }
 
+        req.session.userId = user.id
+
         res.redirect('/')
 
     } catch (error) {
         next(error)
     }
-    
+}
+
+export function logout(req, res, next) {
+    req.session.regenerate(err => {
+        if (err) {
+            next(err)
+            return
+        }
+        res.redirect('/')
+    })
 }
