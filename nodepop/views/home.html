@@ -8,8 +8,8 @@
     <h2>Productos</h2>
     <% products.forEach(product => { %>
       <p>
-        <%= product.name %> tiene un <%= product.price %>€.
-        <a href="/product/delete/<%= product._id%>"><i class="bi bi-trash3"></i></a>
+        <%= product.name %>: tiene un precio de <%= product.price %>€.
+        <a href="/products/delete/<%= product._id%>"><i class="bi bi-trash3"></i></a>
       </p>
     <% }) %>
   <% } %>

@@ -22,7 +22,7 @@ export async function postNew(req, res, next) {
 export async function deleteProduct(req, res, next) {
     try {
         const userId = req.session.userId
-        const productId = req.params.agentID
+        const productId = req.params.productId
 
         await Product.deleteOne({ _id: productId, owner: userId })
 

@@ -32,7 +32,7 @@ async function initProducts() {
         { name: 'Lampara LED', owner: admin._id, price: 40, image: '/uploads/lampara.jpg', tags: ['work'] },
         { name: 'Zapatillas Nike Air Max', owner: admin._id, price: 100, image: '/uploads/nike.jpg', tags: ['lifestyle'] },
         { name: 'Bicicleta Trek Marlin', owner: user._id, price: 650, image: '/uploads/bicicleta.jpg', tags: ['lifestyle', 'motor'] },
-        { name: 'PiPhone 13 Pro Max', owner: admin._id, price: 1100, image: '/uploads/iphone13.jpg', tags: ['mobile'] },
+        { name: 'iPhone 13 Pro Max', owner: admin._id, price: 1100, image: '/uploads/iphone13.jpg', tags: ['mobile'] },
     ])
     console.log(`Inserted ${insertResult.length} products.`)
 }
