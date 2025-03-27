@@ -5,7 +5,9 @@ import logger from 'morgan'
 import connectMongoose from './lib/connectMongoose.js'
 import * as homeController from './controllers/homeController.js'
 import * as loginController from './controllers/loginController.js'
+import * as productsController from './controllers/productsController.js'
 import * as sessionManager from './lib/sessionManager.js'
+
 
 
 await connectMongoose()
@@ -31,7 +33,9 @@ app.get('/', homeController.index)
 app.get('/login', loginController.index)
 app.post('/login', loginController.postLogin)
 app.get('/logout', loginController.logout)
-
+app.get('/products/new', sessionManager.guard, productsController.index)
+app.post('/products/new', sessionManager.guard, productsController.postNew)
+app.get('/products/delete/:productId', sessionManager.guard, productsController.deleteProduct)
 
 //catch 404 and sebd error
 app.use((req, res, next) => {

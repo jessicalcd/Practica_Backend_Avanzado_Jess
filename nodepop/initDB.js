@@ -12,8 +12,8 @@ if (answer.toLowerCase() !== 'y') {
     process.exit()
 }
 
-await initProducts()
 await initUsers()
+await initProducts()
 
 await connection.close()
 
@@ -22,12 +22,17 @@ async function initProducts() {
     const result = await Product.deleteMany()
     console.log(`delete ${result.deletedCount} products.`)
 
+    const [admin, user] = await Promise.all([
+        User.findOne({ username: 'admin'}),
+        User.findOne({ username: 'user'}),
+    ])
+
     //create product
     const insertResult = await Product.insertMany([
-        { name: 'Lampara LED', price: 40, image: '/uploads/lampara.jpg', tags: ['work'] },
-        { name: 'Zapatillas Nike Air Max', price: 100, image: '/uploads/nike.jpg', tags: ['lifestyle'] },
-        { name: 'Bicicleta Trek Marlin', price: 650, image: '/uploads/bicicleta.jpg', tags: ['lifestyle', 'motor'] },
-        { name: 'PiPhone 13 Pro Max', price: 1100, image: '/uploads/iphone13.jpg', tags: ['mobile'] },
+        { name: 'Lampara LED', owner: admin._id, price: 40, image: '/uploads/lampara.jpg', tags: ['work'] },
+        { name: 'Zapatillas Nike Air Max', owner: admin._id, price: 100, image: '/uploads/nike.jpg', tags: ['lifestyle'] },
+        { name: 'Bicicleta Trek Marlin', owner: user._id, price: 650, image: '/uploads/bicicleta.jpg', tags: ['lifestyle', 'motor'] },
+        { name: 'PiPhone 13 Pro Max', owner: admin._id, price: 1100, image: '/uploads/iphone13.jpg', tags: ['mobile'] },
     ])
     console.log(`Inserted ${insertResult.length} products.`)
 }

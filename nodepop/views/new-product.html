@@ -1,0 +1,19 @@
+<%- include('header.html') %>
+
+<div class="container">
+    <h1> Nuevo Producto </h1> 
+    <form method="POST">
+        <div class="mb-3">
+        <label for="exampleInputname1" class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" id="exampleInputname1" aria-describedby="nameHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPrice" class="form-label">Price</label>
+            <input type="number" name="price" class="form-control" id="exampleInputPrice">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        
+    </form> 
+</div> 
+ 
+<%- include('footer.html') %>
