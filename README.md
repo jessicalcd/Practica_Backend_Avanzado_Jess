@@ -7,7 +7,7 @@ Nodepop es un sitio web de ventas de productos de segunda mano. Los usuarios pue
 1. Clona el repositorio en tu máquina local:
 
 ```bash
-git clone https://github.com/jessicalcd/Practica_Fund_Backend.git
+git clone https://github.com/jessicalcd/Practica_Backend_Avanzado_Jess.git
 cd nodepop
 ```
 
