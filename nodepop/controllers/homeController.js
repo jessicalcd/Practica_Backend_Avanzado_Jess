@@ -6,6 +6,11 @@ export async function index (req, res, next) {
         const userId = req.session.userId
         const filterName = req.query.name
 
+        const limit = req.query.limit
+        const skip = req.query.skip
+
+        const sort = req.query.sort
+
         const filter = {
             owner: userId,
         }
@@ -14,7 +19,7 @@ export async function index (req, res, next) {
             filter.name = filterName
         }
         
-        res.locals.products = await Product.find(filter)
+        res.locals.products = await Product.list(filter, limit, skip, sort)
  
     const now = new Date()
     res.locals.esPar = (now.getSeconds() % 2 ) === 0
