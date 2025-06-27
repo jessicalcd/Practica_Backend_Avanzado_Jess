@@ -1,3 +1,4 @@
 node_modules
 uploads
 nodepop/public/images
+.env

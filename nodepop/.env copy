@@ -1,0 +1,2 @@
+MONGODB_CONNSTR=mongodb://localhost/nodepop
+SESSION_SECRET='secret_string'

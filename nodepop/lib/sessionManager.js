@@ -6,12 +6,12 @@ const INACTIVITY_EXPIRATION_2_DAYS = 1000 * 60 * 60 * 24 * 2
 //midleware para gestionar sesiones
 export const middleware = session({
     name: 'nodepop-session',
-    secret: 'y`TPvm%L972=<:p(NdtE;"Q>/#Y&3a}r*RG',
+    secret: process.env.SESSION_SECRET,
     saveUninitialized: true,
     resave: false,
     cookie:{ maxAge: INACTIVITY_EXPIRATION_2_DAYS},
     store: MongoStore.create({
-        mongoUrl: 'mongodb://localhost/nodepop'
+        mongoUrl: process.env.MONGODB_CONNSTR
     })
 })
 
