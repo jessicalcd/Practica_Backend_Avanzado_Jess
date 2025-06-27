@@ -1,22 +1,22 @@
 <%- include('header.html') %>
 
 <div class="container">
-    <h1> Nuevo Producto </h1> 
+    <h1> <%= __('New Product') %> </h1> 
     <form method="POST" enctype="multipart/form-data">
         <div class="mb-3">
-        <label for="exampleInputname1" class="form-label">Name</label>
+        <label for="exampleInputname1" class="form-label"><%= __('Name') %></label>
         <input type="text" name="name" class="form-control" id="exampleInputname1" aria-describedby="nameHelp">
         </div>
         <div class="mb-3">
-            <label for="exampleInputPrice" class="form-label">Price</label>
+            <label for="exampleInputPrice" class="form-label"><%= __('Price') %></label>
             <input type="number" name="price" class="form-control" id="exampleInputPrice">
         </div>
         <div class="mb-3">
-            <label for="customFile" class="form-label">Image</label>
+            <label for="customFile" class="form-label"><%= __('Image') %></label>
             <input type="file" name="image" class="form-control" id="customFile">
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary"><%= __('Submit') %></button>
         
     </form> 
 </div> 

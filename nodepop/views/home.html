@@ -3,7 +3,7 @@
   <p>User ID: <%= session.userId %></p> 
 
   <% if (!session.userId) { %>
-    <p><a href="login">Login</a> to access your products</p>
+    <p><a href="login">Login</a> <%= __('to access your products') %></p>
   <% } else { %>
     <h2><%= __('Products') %></h2>
     <% products.forEach(product => { %>

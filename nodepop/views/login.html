@@ -4,15 +4,15 @@
     <h1> Login </h1> 
     <form method="POST">
         <div class="mb-3">
-        <label for="exampleInputUsername1" class="form-label">Username</label>
+        <label for="exampleInputUsername1" class="form-label"><%= __('Username') %></label>
         <input type="text" value="<%= username %>" name="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp">
-        <div id="usernameHelp" class="form-text">Choose a unique username for your account.</div>
+        <div id="usernameHelp" class="form-text"><%= __('Choose a unique username for your account.') %></div>
         </div>
         <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <label for="exampleInputPassword1" class="form-label"><%= __('Password') %></label>
         <input type="password" name="password" class="form-control" id="exampleInputPassword1">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary"><%= __('Submit') %></button>
         <p><%= error %></p>
     </form> 
 </div> 

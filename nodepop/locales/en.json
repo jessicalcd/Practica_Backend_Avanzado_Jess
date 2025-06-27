@@ -1,4 +1,17 @@
 {
 	"Products": "Products",
-	"{{name}} has a price {{price}}€.": "{{name}} has a price {{price}}€."
+	"{{name}} has a price {{price}}€.": "{{name}} has a price {{price}}€.",
+	"injected": "injected",
+	"Home": "Home",
+	"New Product": "New Product",
+	"Logou": "Logou",
+	"Name": "Name",
+	"Price": "Price",
+	"Image": "Image",
+	"Submit": "Submit",
+	"Login": "Login",
+	"to access your products": "to access your products",
+	"Username": "Username",
+	"Choose a unique username for your account.": "Choose a unique username for your account.",
+	"Password": "Password"
 }

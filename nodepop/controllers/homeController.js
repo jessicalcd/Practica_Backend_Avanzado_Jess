@@ -21,16 +21,15 @@ export async function index (req, res, next) {
         
         res.locals.products = await Product.list(filter, limit, skip, sort)
  
-    const now = new Date()
-    res.locals.esPar = (now.getSeconds() % 2 ) === 0
-    res.locals.segundoActual = now.getSeconds()
+        const now = new Date()
+        res.locals.esPar = (now.getSeconds() % 2 ) === 0
+        res.locals.segundoActual = now.getSeconds()
 
-    res.locals.codigo = '<script>alert("inyectado!!!")</script>'
+        res.locals.codigo = `<script>alert("${res.__('injected')}!!!"</script>`
 
-    res.render('home')
+        res.render('home')
     
     } catch (error) {
         next(error)
     }
 }
-
