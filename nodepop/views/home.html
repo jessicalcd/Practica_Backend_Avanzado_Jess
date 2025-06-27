@@ -5,7 +5,7 @@
   <% if (!session.userId) { %>
     <p><a href="login">Login</a> to access your products</p>
   <% } else { %>
-    <h2>Productos</h2>
+    <h2><%= __('Products') %></h2>
     <% products.forEach(product => { %>
       <p>
         <img
@@ -13,7 +13,7 @@
           alt="image"
           width="200"
         >
-        <%= product.name %>: tiene un precio de <%= product.price %>€.
+        <%=__('{{name}} has a price {{price}}€.', product) %>
         <a href="/products/delete/<%= product._id%>"><i class="bi bi-trash3"></i></a>
       </p>
     <% }) %>
