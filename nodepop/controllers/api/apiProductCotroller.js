@@ -9,6 +9,10 @@ export async function list(req, res, next) {
 
         const sort = req.query.sort
 
+        const fields = req.query.fields
+
+        const withCount = req.query.count === 'true'
+
         const filter = {
             //owner: userId,
         }
@@ -17,9 +21,15 @@ export async function list(req, res, next) {
             filter.name = filterName
         }
 
-        const products = await Product.list(filter, limit, skip, sort)
+        const products = await Product.list(filter, limit, skip, sort, fields)
+        const result = { results: products }
 
-        res.json({ results: products })
+        if (withCount) {
+            const count = await Product.countDocuments(filter)
+            result.count = count
+        }
+
+        res.json(result)
 
     } catch (error) {
         next(error)
