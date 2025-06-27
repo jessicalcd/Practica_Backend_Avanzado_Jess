@@ -7,6 +7,7 @@ import * as homeController from './controllers/homeController.js'
 import * as loginController from './controllers/loginController.js'
 import * as productsController from './controllers/productsController.js'
 import * as localeController from './controllers/localeCotroller.js'
+import * as apiProductController from './controllers/api/apiProductCotroller.js'
 import * as sessionManager from './lib/sessionManager.js'
 import upload from './lib/uploadConfigure.js'
 import i18n from './lib/i18nConfigure.js'
@@ -28,7 +29,10 @@ app.use(logger('dev'))
 app.use(express.urlencoded({ extended: false })) 
 app.use(express.static(path.join(import.meta.dirname, 'public')))
 
-/* Aplication routes */
+/** API routes */
+app.get('/api/products', apiProductController.list)
+
+/* web Aplication routes */
 app.use(cookieParser())
 app.use(sessionManager.middleware)
 app.use(sessionManager.useSessionInViews)
