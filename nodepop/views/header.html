@@ -24,6 +24,15 @@
                 <a class="nav-link" href="/products/new"><%= __('New Product') %></a>
               </li>
             </ul>
+
+            <div>
+              <% getLocales().forEach( locale => { %>
+                <a href="/change-locale/<%= locale %>">
+                  <img src="/picture/<%= locale %>.png" alt="<%= locale %>">
+                </a>
+              <% }) %>
+            </div>&nbsp;
+
             <% if (!session.userId) { %>
               <a class="btn btn-success" href="/login"><%= __('Login') %></a>
             <% } else { %>
