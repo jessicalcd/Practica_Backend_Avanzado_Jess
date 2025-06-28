@@ -2,6 +2,15 @@ import jwt from 'jsonwebtoken'
 import User from '../../models/User.js'
 import createError from 'http-errors'
 
+/**
+ * @openapi
+ * /api/login:
+ *   post:
+ *     description: allows login by returning a JWT
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 export async function loginJWT(req, res, next) {
   try {
     const { username, password } = req.body

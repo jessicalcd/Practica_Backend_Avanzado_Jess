@@ -47,7 +47,15 @@ export async function list(req, res, next) {
     }
 }
 
-
+/**
+ * @openapi
+ * /api/products/productId:
+ *   get:
+ *     description: Return a products
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 export async function getOne(req, res, next) {
     try {
         const productId = req.params.productId
@@ -84,6 +92,15 @@ export async function newProduct(req, res, next) {
     }
 }
 
+/**
+ * @openapi
+ * /api/products/productId:
+ *   put:
+ *     description: Update a product
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 export async function update(req, res, next) {
     try {
         const productId = req.params.productId
@@ -100,6 +117,15 @@ export async function update(req, res, next) {
     }
 }
 
+/**
+ * @openapi
+ * /api/products/productId:
+ *   delete:
+ *     description: Delete a product
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 export async function deleteProduct(req, res, next) {
     try {
         const productId = req.params.productId
