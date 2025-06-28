@@ -1,2 +1,4 @@
+PORT =3000
+NODEPOP_ENV=development
 MONGODB_CONNSTR=mongodb://localhost/nodepop
 SESSION_SECRET='secret_string'

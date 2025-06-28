@@ -12,7 +12,7 @@ import * as sessionManager from './lib/sessionManager.js'
 import upload from './lib/uploadConfigure.js'
 import i18n from './lib/i18nConfigure.js'
 import cookieParser from 'cookie-parser'
-
+import swaggerMiddleware from './lib/swaggerMiddleware.js'
 
 await connectMongoose()
 console.log('Conecte to MongoBD')
@@ -49,6 +49,7 @@ app.get('/logout', loginController.logout)
 app.get('/products/new', sessionManager.guard, productsController.index)
 app.post('/products/new', sessionManager.guard, upload.single('image'), productsController.postNew)
 app.get('/products/delete/:productId', sessionManager.guard, productsController.deleteProduct)
+app.use('/api-doc', swaggerMiddleware)
 
 //catch 404 and sebd error
 app.use((req, res, next) => {

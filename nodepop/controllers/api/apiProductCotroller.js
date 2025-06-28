@@ -2,6 +2,15 @@ import Product from '../../models/Product.js'
 import { unlink } from 'node:fs/promises'
 import path from 'node:path'
 
+/**
+ * @openapi
+ * /api/products:
+ *   get:
+ *     description: Return a list of products
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 export async function list(req, res, next) {
     try {
         const filterName = req.query.name
@@ -38,6 +47,7 @@ export async function list(req, res, next) {
     }
 }
 
+
 export async function getOne(req, res, next) {
     try {
         const productId = req.params.productId
@@ -50,6 +60,15 @@ export async function getOne(req, res, next) {
     }
 }
 
+/**
+ * @openapi
+ * /api/products:
+ *   post:
+ *     description: Create a new product
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 export async function newProduct(req, res, next) {
     try {
         const productData = req.body
