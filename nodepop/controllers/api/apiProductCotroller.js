@@ -35,3 +35,46 @@ export async function list(req, res, next) {
         next(error)
     }
 }
+
+export async function getOne(req, res, next) {
+    try {
+        const productId = req.params.productId
+
+        const product = await Product.findById(productId)
+
+        res.json({ result: product })
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function newProduct(req, res, next) {
+    try {
+        const productData = req.body
+
+        const product = new Product(productData)
+        product.image = req.file?.filename
+
+        const savedProduct = await product.save()
+
+        res.json({ result: savedProduct })
+    } catch (error) {
+        next(error)      
+    }
+}
+
+export async function update(req, res, next) {
+    try {
+        const productId = req.params.productId
+        const productData = req.body
+        productData.image = req.file?.filename
+
+        const updateProduct = await Product.findByIdAndUpdate(productId, productData, {
+            new: true 
+        })
+
+        res.json({ result: updateProduct })
+    } catch (error) {
+        next(error)
+    }
+}

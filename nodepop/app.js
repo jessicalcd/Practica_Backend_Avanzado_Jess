@@ -31,6 +31,9 @@ app.use(express.static(path.join(import.meta.dirname, 'public')))
 
 /** API routes */
 app.get('/api/products', apiProductController.list)
+app.get('/api/products/:productId', apiProductController.getOne)
+app.post('/api/products', upload.single('image'), apiProductController.newProduct)
+app.put('/api/products/:productId', upload.single('image'), apiProductController.update)
 
 /* web Aplication routes */
 app.use(cookieParser())
@@ -54,6 +57,12 @@ app.use((req, res, next) => {
 //error handler
 app.use((err, req, res, next) => {
     res.status(err.status || 500)
+
+    if (req.url.startsWith('/api/')) {
+        res.json({ error: err.message })
+        return
+    }
+
     res.locals.message = err.message
     res.locals.error = process.env.NODEPOP_ENV === 'development' ? err : {}
 
