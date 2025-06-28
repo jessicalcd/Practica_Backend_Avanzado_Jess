@@ -34,6 +34,7 @@ app.get('/api/products', apiProductController.list)
 app.get('/api/products/:productId', apiProductController.getOne)
 app.post('/api/products', upload.single('image'), apiProductController.newProduct)
 app.put('/api/products/:productId', upload.single('image'), apiProductController.update)
+app.delete('/api/products/:productId', apiProductController.deleteProduct)
 
 /* web Aplication routes */
 app.use(cookieParser())
