@@ -8,6 +8,7 @@ import * as loginController from './controllers/loginController.js'
 import * as productsController from './controllers/productsController.js'
 import * as localeController from './controllers/localeCotroller.js'
 import * as apiProductController from './controllers/api/apiProductCotroller.js'
+import * as apiLoginController from './controllers/api/apiLoginController.js'
 import * as sessionManager from './lib/sessionManager.js'
 import upload from './lib/uploadConfigure.js'
 import i18n from './lib/i18nConfigure.js'
@@ -30,6 +31,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(import.meta.dirname, 'public')))
 
 /** API routes */
+app.post('/api/login', apiLoginController.loginJWT)
 app.get('/api/products', apiProductController.list)
 app.get('/api/products/:productId', apiProductController.getOne)
 app.post('/api/products', upload.single('image'), apiProductController.newProduct)
