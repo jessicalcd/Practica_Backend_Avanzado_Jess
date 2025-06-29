@@ -14,6 +14,7 @@ import upload from './lib/uploadConfigure.js'
 import i18n from './lib/i18nConfigure.js'
 import cookieParser from 'cookie-parser'
 import swaggerMiddleware from './lib/swaggerMiddleware.js'
+import * as jwtAuth from './lib/jwtAuthMiddleware.js'
 
 await connectMongoose()
 console.log('Conecte to MongoBD')
@@ -32,11 +33,11 @@ app.use(express.static(path.join(import.meta.dirname, 'public')))
 
 /** API routes */
 app.post('/api/login', apiLoginController.loginJWT)
-app.get('/api/products', apiProductController.list)
-app.get('/api/products/:productId', apiProductController.getOne)
-app.post('/api/products', upload.single('image'), apiProductController.newProduct)
-app.put('/api/products/:productId', upload.single('image'), apiProductController.update)
-app.delete('/api/products/:productId', apiProductController.deleteProduct)
+app.get('/api/products', jwtAuth.guard, apiProductController.list)
+app.get('/api/products/:productId', jwtAuth.guard, apiProductController.getOne)
+app.post('/api/products', jwtAuth.guard, upload.single('image'), apiProductController.newProduct)
+app.put('/api/products/:productId', jwtAuth.guard, upload.single('image'), apiProductController.update)
+app.delete('/api/products/:productId', jwtAuth.guard, apiProductController.deleteProduct)
 
 /* web Aplication routes */
 app.use(cookieParser())

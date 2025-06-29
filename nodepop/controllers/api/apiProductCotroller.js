@@ -13,6 +13,9 @@ import path from 'node:path'
  */
 export async function list(req, res, next) {
     try {
+
+        console.log('apiUserId', req.apiUserId)
+
         const filterName = req.query.name
 
         const limit = req.query.limit
