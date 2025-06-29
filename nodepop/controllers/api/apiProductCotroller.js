@@ -1,6 +1,7 @@
 import Product from '../../models/Product.js'
 import { unlink } from 'node:fs/promises'
 import path from 'node:path'
+import createError from 'http-errors'
 
 /**
  * @openapi
@@ -14,7 +15,7 @@ import path from 'node:path'
 export async function list(req, res, next) {
     try {
 
-        console.log('apiUserId', req.apiUserId)
+        const userId = req.apiUserId
 
         const filterName = req.query.name
 
@@ -28,7 +29,7 @@ export async function list(req, res, next) {
         const withCount = req.query.count === 'true'
 
         const filter = {
-            //owner: userId,
+            owner: userId,
         }
 
         if (filterName) {
@@ -62,8 +63,9 @@ export async function list(req, res, next) {
 export async function getOne(req, res, next) {
     try {
         const productId = req.params.productId
+        const userId = req.apiUserId
 
-        const product = await Product.findById(productId)
+        const product = await Product.findOne({ _id: productId, owner: userId })
 
         res.json({ result: product })
     } catch (error) {
@@ -83,9 +85,11 @@ export async function getOne(req, res, next) {
 export async function newProduct(req, res, next) {
     try {
         const productData = req.body
+        const userId = req.apiUserId
 
         const product = new Product(productData)
         product.image = req.file?.filename
+        agent.owner = userId
 
         const savedProduct = await product.save()
 
@@ -107,10 +111,14 @@ export async function newProduct(req, res, next) {
 export async function update(req, res, next) {
     try {
         const productId = req.params.productId
+        const userId = req.apiUserId
         const productData = req.body
         productData.image = req.file?.filename
 
-        const updateProduct = await Product.findByIdAndUpdate(productId, productData, {
+        const updatedProduct = await Product.findOneAndUpdate({
+            _id: productId,
+            owner: userId
+        }, productData, {
             new: true 
         })
 
@@ -132,8 +140,20 @@ export async function update(req, res, next) {
 export async function deleteProduct(req, res, next) {
     try {
         const productId = req.params.productId
+        const userId = req.apiUserId
 
         const product = await Product.findById(productId)
+
+        if (!product) {
+            console.log(`WARNING! user ${userId} is trying to delete non existing product`)
+            return next(createError(404))
+        }
+
+        if (product.owner.toString() !== userId) {
+            console.log(`WARNING! user ${userId} is trying to delete products of other users!!!`)
+            return next(createError(401))
+        }
+
         if (product.image) {
             await unlink(path.join(import.meta.dirname, '..', '..', 'public', 'images', product.image))
         }
