@@ -11,8 +11,8 @@
 	"Submit": "Enviar",
 	"Login": "Login",
 	"to access your products": "para acceder a tus productos",
-	"Username": "Nombre de usuario",
-	"Choose a unique username for your account.": "Elija un nombre de usuario único para su cuenta.",
+	"Email address": "Dirección de email",
+	"Choose a unique email for your account.": "Elija un email único para su cuenta.",
 	"Password": "Contraseña",
 	"API Doc": "API Doc"
 }

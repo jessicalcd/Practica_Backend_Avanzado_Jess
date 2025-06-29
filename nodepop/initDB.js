@@ -25,8 +25,8 @@ async function initProducts() {
     console.log(`delete ${result.deletedCount} products.`)
 
     const [admin, user] = await Promise.all([
-        User.findOne({ username: 'admin'}),
-        User.findOne({ username: 'user'}),
+        User.findOne({ email: 'admin@example.com'}),
+        User.findOne({ email: 'user1@example.com'}),
     ])
 
     //create product
@@ -46,8 +46,8 @@ async function initUsers() {
 
     //create user
     const insertResult = await User.insertMany([
-        { username: 'admin', password: await User.hashPassword('1234') },
-        { username: 'user', password: await User.hashPassword('1234') },
+        { email: 'admin@example.com', password: await User.hashPassword('1234') },
+        { email: 'user1@example.com', password: await User.hashPassword('1234') },
 
     ])
     console.log(`Inserted ${insertResult.length} users.`)

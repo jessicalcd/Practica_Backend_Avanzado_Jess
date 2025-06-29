@@ -13,9 +13,9 @@ import createError from 'http-errors'
  */
 export async function loginJWT(req, res, next) {
   try {
-    const { username, password } = req.body
+    const { email, password } = req.body
 
-    const user = await User.findOne({ username: username })
+    const user = await User.findOne({ email: email })
 
     if (!user || !(await user.comparePassword(password))) {
       next(createError(401, 'invalid credentials'))

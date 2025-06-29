@@ -4,9 +4,16 @@
     <h1> Login </h1> 
     <form method="POST">
         <div class="mb-3">
-        <label for="exampleInputUsername1" class="form-label"><%= __('Username') %></label>
-        <input type="text" value="<%= username %>" name="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp">
-        <div id="usernameHelp" class="form-text"><%= __('Choose a unique username for your account.') %></div>
+        <label for="exampleInputUsername1" class="form-label"><%= __('Email address') %></label>
+        <input 
+            type="email" 
+            value="<%= email %>" 
+            name="email" 
+            class="form-control" 
+            id="exampleInputEmail1" 
+            aria-describedby="emailHelp"
+        >
+        <div id="emailHelp" class="form-text"><%= __('Choose a unique email for your account.') %></div>
         </div>
         <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label"><%= __('Password') %></label>
